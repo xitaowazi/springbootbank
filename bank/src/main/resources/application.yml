@@ -2,6 +2,7 @@ server:
   port: 8086
   servlet:
     context-path:
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,10 +13,21 @@ spring:
     serialization:
       indent_output: true
 
-# 设置 mybatis 的别名（指定包下的类名即别名）
 mybatis:
   type-aliases-package: com.springboot.bank.domain
-  mapper-locations: mybatis/mapper/*.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
 logging:
   level:
-    org.springframwork.security: info
+    org.springframework.security: info
+
+# JWT
+jwt:
+  header: Authorization
+  secret: mySecret
+# token
+  expiration: 604800
+  route:
+    authentication:
+      path: /auth
+      refresh: /refresh
