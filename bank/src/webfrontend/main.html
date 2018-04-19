@@ -204,6 +204,7 @@
             $("#username").html(user.username)
             $("#loginDate").html(user.loginDate)
             //根据角色加载菜单
+            console.log(user.authorities)
             loadMenu(user.authorities)
         }else {
             location.href="index.html"
