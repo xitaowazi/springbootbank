@@ -98,8 +98,16 @@ public class UserRestController {
   }
 
   @RequestMapping("/userauthority")
-  public ResponseEntity<?> addUserAuthority(@RequestParam("userId") Integer userId,@RequestParam("authorityId")Integer authorityId){
-    int count = userService.addUserAuthority(userId,authorityId);
+  public ResponseEntity<?> addUserAuthority(@RequestParam("userId") Integer userId,@RequestParam("authorityIds")Integer[] authorityIds){
+    System.out.println(authorityIds+"..........");
+    System.out.println(new Integer[]{3,2});
+    int count =userService.addUserAuthority(userId,authorityIds);
     return ResponseEntity.ok(count);
+  }
+
+  @GetMapping("/finduserauthority")
+  public ResponseEntity<?> findUserAuthority(@RequestParam("userId") Integer userId){
+   List<Integer> authorityIds = userService.findUserAuthority(userId);
+   return new ResponseEntity<>(authorityIds,HttpStatus.OK);
   }
 }

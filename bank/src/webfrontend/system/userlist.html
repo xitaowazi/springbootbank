@@ -95,7 +95,8 @@
                 <th width="100">${user.email}</th>
                 <th width="100">${enabled}</th>
                 <th width="100">${user.loginDate}</th>
-                <th width="100"><button type="button" onclick="editUser('修改系统用户',${user.id})" class="btn btn-primary-outline radius">修改</button> </th>
+                <th width="100"><button type="button" onclick="editUser('修改系统用户',${user.id})" class="btn btn-primary-outline radius">修改</button>
+                &nbsp;&nbsp;<button type="button" onclick="addUserAuthority('系统用户授权',${user.id})" class="btn btn-warning-outline radius">授权</button> </th>
             </tr>
                     `
                 })
@@ -115,6 +116,12 @@
         localStorage.setItem("id", id)
         // 显示窗口(标题,url,width,height)
         layer_show(title, 'useredit.html', 450, 405)
+    }
+
+    function addUserAuthority(title,id) {
+        localStorage.setItem("id", id)
+
+        layer_show(title, 'userAuthority.html', 450, 405)
     }
 </script>
 </body>

@@ -1,5 +1,6 @@
 package com.springboot.bank;
 
+import com.springboot.bank.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class ApplicationTests {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
+  @Autowired
+  private UserService userService;
+
   @Test
   public void getPassword() {
     /**
@@ -26,6 +30,11 @@ public class ApplicationTests {
      * BCrypt强哈希方法:每次加密的结果都不一样。
      */
     System.out.println(passwordEncoder.encode("admin"));
+  }
+
+  @Test
+  public void addUserAuthority(){
+    userService.addUserAuthority(6,new Integer[]{1,2});
   }
 
 }

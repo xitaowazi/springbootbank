@@ -32,9 +32,26 @@ public interface UserMapper {
   /**
    * 关联用户——角色
    * @param userid
-   * @param authorityId
+   * @param authorityIds
    * @return
    */
-  @Insert("insert into user_authority(user_id,authority_id)")
-  int addUserAuthority(@Param("userId")Integer userid,@Param("authorityId") Integer authorityId);
+  //@Insert("insert into user_authority(user_id,authority_id)")
+  int addUserAuthority(@Param("userId")Integer userId,
+                       @Param("authorityIds") Integer[] authorityIds);
+
+  /**
+   * 删除指定用户的角色
+   * @param userId
+   * @return
+   */
+  @Delete("delete from user_authority where user_id=#{userId}")
+  int removeUserAuthority(@Param("userId") Integer userId);
+
+  /**
+   * 查询指定用户的角色
+   * @param userId
+   * @return
+   */
+  @Select("select authority_id from user_authority where user_id=#{userId}")
+  List<Integer> findUserAuthority(@Param("userId") Integer userId);
 }
